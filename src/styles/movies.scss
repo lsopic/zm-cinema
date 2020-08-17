@@ -1,0 +1,51 @@
+@mixin full {
+    width: 100vw;
+    height: 100vh;
+}
+
+.empty-list {
+    @include full();
+    background-image: url("../assets/undraw_empty_street_sfxm\ 1.svg");
+    background-repeat: no-repeat;
+    background-position: 10% 100%;
+}
+
+.upload {
+    display: flex;
+    justify-content: center;
+    border: 1px dashed black;
+    width: 100%;
+    height: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.movie-list-img {
+    object-fit: contain;
+    width: 64px;
+    height: 64px;
+}
+
+.movie {
+    padding: 1em 0;
+    border-bottom: 1px solid #bcbcbc;
+}
+
+.small-preview {
+    width: 150px;
+    height: auto;
+}
+
+.edit-bg {
+    @include full();
+    background-repeat: no-repeat;
+    background-image: url('../assets/undraw_working_from_anywhere_ub67\ 1.svg');
+    background-position-x: right;
+}
+
+.create-bg {
+    @include full();
+    background-repeat: no-repeat;
+    background-image: url('../assets/undraw_Tree_swing_646s\ 1.svg');
+    background-position-x: right;
+}

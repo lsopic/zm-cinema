@@ -4,6 +4,8 @@ import { signIn } from '../../services/signin'
 import { connect } from 'react-redux'
 import { Dispatch, Action } from 'redux'
 import { reduxConstants } from '../../constants/reduxConstants'
+import { history } from '../../reducers/store'
+import { Redirect } from 'react-router'
 
 interface Props {
     user: any
@@ -15,11 +17,12 @@ const SignInForm = (props: Props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleSubmit = async() => {
+    const handleSubmit = async () => {
         const user = await signIn(email, password)
         props.storeUserData(user)
+        history.replace('/movies')
+        localStorage.setItem('user', JSON.stringify(user))
     }
-
     return (
         <Row align='middle'>
             <Col>
@@ -47,14 +50,14 @@ const SignInForm = (props: Props) => {
 }
 
 const mapStateToProps = (state: { user: any }) => {
-    return{
+    return {
         user: state.user
     }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
-    return{
-        storeUserData: (payload: any) => dispatch({type: reduxConstants.STORE_USER_DATA, payload})
+    return {
+        storeUserData: (payload: any) => dispatch({ type: reduxConstants.STORE_USER_DATA, payload })
     }
 }
 
