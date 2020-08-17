@@ -24,23 +24,23 @@ const SignInForm = (props: Props) => {
         localStorage.setItem('user', JSON.stringify(user))
     }
     return (
-        <Row align='middle'>
+        <Row align='middle' justify='center' className='signin-form-wrapper'>
             <Col>
                 <Row>
-                    <Typography.Title level={1}>Log in</Typography.Title>
+                    <Typography.Title className='title' level={1}>Login</Typography.Title>
                 </Row>
                 <Form layout='vertical'>
                     <Row>
-                        <Form.Item label='Email:*'>
+                        <Form.Item label='Email:*' className='full-width'>
                             <Input onChange={(e) => setEmail(e.target.value)} />
                         </Form.Item>
                     </Row>
                     <Row>
-                        <Form.Item label='Password:*'>
+                        <Form.Item label='Password:*' className='full-width'>
                             <Input.Password onChange={(e) => setPassword(e.target.value)} />
                         </Form.Item>
                     </Row>
-                    <Button onClick={handleSubmit}>
+                    <Button className='red-button full-width' onClick={handleSubmit}>
                         Sign in
                     </Button>
                 </Form>

@@ -1,7 +1,12 @@
 .bg-img-signin{
     background-image: url('../assets/undraw_videographer_nnc7\ 1.svg');
     background-size: contain;
-    width: 674px;
-    height: 736px;
     background-repeat: no-repeat;
+    background-position: right;
+    width: 100vw;
+    height: 100vh;
+}
+
+.signin-form-wrapper{
+    width: 50%;
 }

@@ -1,3 +1,42 @@
 @import "fonts";
 @import "./signin.scss";
 @import "./movies.scss";
+
+.full-width {
+    width: 100%;
+}
+
+.red-button {
+    border: none;
+    background: #fd0157;
+    border-radius: 5px;
+    font-family: "Source Sans Pro";
+    color: white;
+    box-shadow: none;
+
+    &:hover {
+        background: #fd0157;
+        border-radius: 5px;
+        font-family: "Source Sans Pro";
+        color: white;
+        box-shadow: none;
+    }
+}
+
+.white-button {
+    font-family: "Source Sans Pro";
+    background: #ffffff;
+    border: 1px solid #bcbcbc;
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: black;
+
+    &:hover {
+        font-family: "Source Sans Pro";
+        background: #ffffff;
+        border: 1px solid #bcbcbc;
+        box-sizing: border-box;
+        border-radius: 5px;
+        color: black;
+    }
+}
