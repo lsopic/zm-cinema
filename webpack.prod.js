@@ -7,8 +7,7 @@ module.exports = merge(common,{
     target: "web",
     mode: 'production',
     output: {
-        path: './build/static',
-        filename: 'bundle-front.js',
+        publicPath: "/zm-cinema/"
     },
     devtool: "source-map",
     plugins:[
@@ -16,7 +15,7 @@ module.exports = merge(common,{
         new HtmlWebpackPlugin({
             filename: "build/index.html",
             inject: 'body',
-            template: "./src/index.html",
+            template: "./src/index-template.html",
         }),
     ]
 })

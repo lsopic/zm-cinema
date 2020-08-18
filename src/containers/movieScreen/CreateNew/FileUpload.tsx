@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useRef } from 'react'
-import { Typography } from 'antd'
+import { Typography, Row } from 'antd'
 
 interface Props {
     handleUpload: (e: React.DragEvent<HTMLDivElement>) => void
@@ -14,15 +14,16 @@ const FileUpload = (props: Props) => {
     }
     return (
         <>
-            <div className='upload'
+            <Row className='upload'
+                align='middle'
                 onDragOver={prevent}
                 onDrop={(e) => props.handleUpload(e)}
                 onDragEnter={prevent}
                 onDragLeave={prevent}
                 style={{ backgroundImage: `url(${props.fileUrl})` }}
             >
-                <Typography.Text>Drop image here</Typography.Text>
-            </div>
+                {!props.fileUrl ? <Typography.Text>Drop image here</Typography.Text> : null}
+            </Row>
         </>
     )
 }

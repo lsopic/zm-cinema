@@ -1,4 +1,5 @@
 {
+  "homepage": "http://{lsopic}.github.io/{zm-cinema}",
   "name": "zero-molecule-cinema",
   "version": "1.0.0",
   "description": "",
@@ -6,7 +7,8 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --open --port 8000",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.prod.js --mode production"
+    "predeploy": "webpack --config webpack.prod.js --mode production",
+    "deploy": "gh-pages -d build"
   },
   "author": "",
   "license": "ISC",

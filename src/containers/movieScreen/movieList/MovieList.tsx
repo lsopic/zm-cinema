@@ -8,16 +8,16 @@ interface Props {
 
 const MovieList = (props: Props) => {
     return (
-        <Row style={{height: '100vh', width:'100vw'}}>
-            <Col style={{width: '100%', padding: '4em'}}>
+        <Row style={{ height: '100vh', width: '100vw' }}>
+            <Col style={{ width: '100%', padding: '6em' }}>
                 <Row>
-                    <Typography.Title>Movies</Typography.Title>
+                    <Typography.Title className='title'>Movies</Typography.Title>
                 </Row>
                 <Row justify='space-between'>
-                    <Col>Cover image</Col>
-                    <Col>Title</Col>
-                    <Col>Publication year</Col>
-                    <Col>Options</Col>
+                    <Col span={4}><Typography.Text className='labels'>Cover image</Typography.Text></Col>
+                    <Col span={7} className='align-center' ><Typography.Text className='labels'>Title</Typography.Text></Col>
+                    <Col span={7} className='align-center'><Typography.Text className='labels'>Publication year</Typography.Text></Col>
+                    <Col span={4} className='align-right'><Typography.Text className='labels small-margin'>Options</Typography.Text></Col>
                 </Row>
                 <>
                     {props.movieList.map((movie) => {

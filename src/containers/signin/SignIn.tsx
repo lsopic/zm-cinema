@@ -1,12 +1,8 @@
 import React from 'react'
 import SignInForm from './SignInForm'
-import { Row, Col } from 'antd'
+import { Row } from 'antd'
 
-interface Props {
-
-}
-
-const SignIn = (props: Props) => {
+const SignIn = () => {
     return (
         <Row style={{ display: 'flex' }} justify='start' className='bg-img-signin'>
             <SignInForm />

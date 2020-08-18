@@ -17,14 +17,14 @@ const EmptyList = (props: Props) => {
             <Col>
                 <Row>
                     <Col>
-                        <Typography.Title level={2}>
+                        <Typography.Title  className='title' level={2}>
                             Your movie list is empty
                 </Typography.Title>
                     </Col>
                 </Row>
-                <Row>
+                <Row justify='center'>
                     <Col>
-                        <Button onClick={redirectToCreateMovie}>
+                        <Button className='red-button' onClick={redirectToCreateMovie}>
                             Create a new movie
                         </Button>
                     </Col>

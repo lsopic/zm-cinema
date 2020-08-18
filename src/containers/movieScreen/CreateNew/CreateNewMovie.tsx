@@ -44,10 +44,11 @@ const CreateNewMovie = (props: Props) => {
     const [oldImagePreview, setOldImagePreview] = useState(null)
 
     useEffect(() => {
-        if(props.isEditing && props.poster !== null){
+        if (props.isEditing && props.poster !== null) {
             console.log(props.poster)
             setOldImagePreview(props.poster.url)
         }
+        form.setFieldsValue({ 'title': props.title, 'year': props.year })
     }, [])
 
     const handleImages = (e: React.DragEvent<HTMLDivElement>) => {
@@ -56,7 +57,7 @@ const CreateNewMovie = (props: Props) => {
         e.preventDefault()
         e.stopPropagation();
 
-        const supportedFileTypes = ['image/jpeg']
+        const supportedFileTypes = ['image/jpeg', 'image/jpg', 'image/png']
         const image = e.dataTransfer.files[0]
         const type = image.type
         if (supportedFileTypes.indexOf(type) > -1) {
@@ -74,7 +75,10 @@ const CreateNewMovie = (props: Props) => {
     }
 
     const handleSubmit = async () => {
-        if (!props.poster) notification.error({ message: 'Please add movie poster!' })
+        if (!props.poster) {
+            notification.error({ message: 'Please add movie poster!' })
+            return
+        }
 
         form.validateFields()
         const validationErrors = Object.values(form.getFieldsValue(['title']))
@@ -82,9 +86,9 @@ const CreateNewMovie = (props: Props) => {
         if (!validationErrors.some(e => e === undefined)) {
 
             if (props.isEditing) {
-                const res = await updateMovie(props.id, { title: props.title, year: props.year, poster: props.poster })
+               await updateMovie(props.id, { title: props.title, year: props.year, poster: props.poster })
             } else {
-                const res = await createMovie({ title: props.title, year: props.year }, props.poster)
+                await createMovie({ title: props.title, year: props.year }, props.poster)
             }
             history.push('/movies')
         }
@@ -98,40 +102,50 @@ const CreateNewMovie = (props: Props) => {
 
     return (
         <Row className={props.isEditing ? 'edit-bg' : 'create-bg'}>
-            <Col>
-                <Form form={form}>
-                    <Row>
-                        <Typography.Title>{props.isEditing ? 'Edit' : 'Create a new Movie'}</Typography.Title>
-                    </Row>
-                    <Row>
-                        <Form.Item name='title' label='Title*'
-                            dependencies={[props.title]}
-                            rules={[{ required: true, message: 'Please input your username!' }]}>
-                            <Input
-                                value={props.title}
-                                onChange={(e) => handleChange(e, 'title')} />
+            <Col style={{ display: 'flex', flexDirection: 'column', padding: '6em', width: '40%' }}>
+                <Row>
+                    <Typography.Title level={1} className='title'>{props.isEditing ? 'Edit' : 'Create a new Movie'}</Typography.Title>
+                </Row>
+                <Row>
+                    <Form form={form} layout='vertical' className='form-movie' hideRequiredMark>
+                        <Row>
+                            <Form.Item
+                                className='full-width'
+                                name='title' label='Title*'
+                                dependencies={[props.title]}
+                                rules={[{ required: true, message: 'Please input your username!' }]}>
+                                <Input
+                                    className='input'
+                                    value={props.title}
+                                    onChange={(e) => handleChange(e, 'title')} />
+                            </Form.Item>
+                        </Row>
+                        <Row>
+                            <Form.Item
+                                className='full-width'
+                                name='year'
+                                dependencies={[props.year]}
+                                label='Publication year'>
+                                <InputNumber
+                                    className='input'
+                                    value={props.year}
+                                    onBlur={(e) => handleChange(e, 'year')} />
+                            </Form.Item>
+                        </Row>
+                        <Form.Item label='Cover image*'>
+                            {props.isEditing ? <img className='small-preview' src={oldImagePreview} /> : null}
+                            <FileUpload fileUrl={props.fileUrl} handleUpload={handleImages} />
                         </Form.Item>
-                    </Row>
-                    <Row>
-                        <Form.Item label='Publication year'>
-                            <InputNumber
-                                value={props.year}
-                                onBlur={(e) => handleChange(e, 'year')} />
-                        </Form.Item>
-                    </Row>
-                    <Form.Item label='Cover image*'>
-                        {props.isEditing ? <img className='small-preview' src={oldImagePreview}/> : null}
-                        <FileUpload fileUrl={props.fileUrl} handleUpload={handleImages} />
-                    </Form.Item>
-                    <Row>
-                        <Button onClick={cancel}>
-                            Cancel
+                        <Row justify='space-between'>
+                            <Button style={{ width: '40%' }} onClick={cancel} className='white-button'>
+                                Cancel
                         </Button>
-                        <Button onClick={handleSubmit}>
-                            {props.isEditing ? 'Update' : 'Create'}
-                        </Button>
-                    </Row>
-                </Form>
+                            <Button style={{ width: '55%' }} onClick={handleSubmit} className='red-button'>
+                                {props.isEditing ? 'Update' : 'Create'}
+                            </Button>
+                        </Row>
+                    </Form>
+                </Row>
             </Col>
         </Row>
     )

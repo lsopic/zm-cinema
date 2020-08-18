@@ -30,15 +30,15 @@ const Movie = (props: Props) => {
 
     return (
         <Row justify='space-between' align='middle' className='movie'>
-            <Col><img className='movie-list-img' src={props.poster?.url} /></Col>
-            <Col>{props.title}</Col>
-            <Col>{props.year}</Col>
-            <Col>
+            <Col span={4}><img className='movie-list-img' src={props.poster?.url} /></Col>
+            <Col className='align-center' span={7}>{props.title}</Col>
+            <Col className='align-center' span={7}>{props.year}</Col>
+            <Col className='align-center list-item-buttons-container' span={4}>
                 <Row>
-                    <Button onClick={editMovie}>Edit</Button>
+                    <Button className='edit-button small-margin' onClick={editMovie}>Edit</Button>
                 </Row>
                 <Row>
-                    <Button onClick={deleteMovieFromList}>Delete</Button>
+                    <Button className='delete-button' onClick={deleteMovieFromList}>Delete</Button>
                 </Row>
             </Col>
         </Row>
