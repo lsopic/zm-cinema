@@ -1,6 +1,6 @@
 import { reduxConstants } from "../constants/reduxConstants"
 
-export const movieList = (state: Array<any> = new Array, action: any) => {
+export const movieList = (state: Array<IMovieState> = new Array, action: any) => {
     switch (action.type) {
 
         case reduxConstants.STORE_MOVIES:

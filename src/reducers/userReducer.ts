@@ -1,10 +1,11 @@
 import { reduxConstants } from "../constants/reduxConstants"
 
-const initialState = {
-
+interface Iuser{
+    jwt?: string
+    user?: any
 }
 
-export const user = (state = initialState, action: { type: string, payload: any }) => {
+export const user = (state: Iuser = {}, action: { type: string, payload: any }) => {
     switch (action.type) {
 
         case reduxConstants.STORE_USER_DATA:
